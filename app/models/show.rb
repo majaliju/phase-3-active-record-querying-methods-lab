@@ -5,8 +5,11 @@ class Show < ActiveRecord::Base
   end
 
   def self.most_popular_show
-    Show.where("self_highest_rating")
-    # this one is super close -- just gotta return the name from it
+    self.order(:rating).last
+
+    # best_show = Show.highest_rating
+    # Show.find_by(rating: best_show)
+    # found this closest workaround 
   end
 
   def self.lowest_rating
@@ -14,7 +17,11 @@ class Show < ActiveRecord::Base
   end
 
   def self.least_popular_show
+    self.order(:rating).first
+    # found this better method 
 
+    # worst_show = Show.highest_rating
+    # Show.find_by(rating: worst_show)
     # this one is similar to the second one -- just gotta return name, apply to method above
     
   end
